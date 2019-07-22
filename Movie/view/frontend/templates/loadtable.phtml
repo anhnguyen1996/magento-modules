@@ -1,0 +1,39 @@
+<div class="col-m-4">
+    <table class="admin__table-secondary">
+        <tr>
+            <th>Movie Name</th>
+            <th>Movie Rating</th>
+            <th>Director Name</th>
+            <th>Actor Name</th>
+        </tr>
+        <?php foreach ($block->getMovieDataByDirectSQL() as $movieDataElement):?>
+        <tr>
+            <?php foreach ($movieDataElement as $key => $value):?>
+            <td><?php echo $value;?></td>
+            <?php endforeach;?>
+        </tr>
+        <?php endforeach;?>
+    </table>
+</div>
+<div class="col-m-4">
+    <table class="admin__table-secondary">
+        <tr>
+            <th>Movie Name</th>
+            <th>Movie Rating</th>
+            <th>Director Name</th>
+        </tr>
+        <?php foreach ($block->getMovieDataByCollectionSQL() as $movieDataElement):?>
+        <tr>
+            <td>
+                <?php echo $movieDataElement->getData('name');?>
+            </td>
+            <td>
+                <?php echo $movieDataElement->getData('rating');?>
+            </td>
+            <td>
+                <?php echo $movieDataElement->getData('director_name');?>
+            </td>
+        </tr>
+        <?php endforeach;?>
+    </table>
+</div>

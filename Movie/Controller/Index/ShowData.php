@@ -52,7 +52,7 @@ class ShowData extends Action
         )->join(
             ['d' => $directorTableName],
             'main_table.director_id = d.director_id',
-            'd.name'
+            'd.name as director_name'
         )->join(
             ['ma' => $movieActorTableName],
             'ma.movie_id = main_table.movie_id',
@@ -60,7 +60,7 @@ class ShowData extends Action
         )->join(
             ['a' => $actorTableName],
             'ma.actor_id = a.actor_id',
-            'a.name'
+            'a.name as actor_name'
         );
 
         $output = '';

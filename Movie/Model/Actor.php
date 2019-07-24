@@ -2,6 +2,7 @@
 namespace Magenest\Movie\Model;
 
 use Magento\Framework\Model\AbstractModel;
+use Magento\Customer\Ui\Component\Listing\Column\Websites;
 
 class Actor extends AbstractModel
 {

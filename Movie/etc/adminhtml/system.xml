@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="1">
+            <label>Magenest</label>
+        </tab>
+        <section id="section_movie" translate="label" type="text"
+                 sortOrder="1" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Movie Configuration</label>
+            <tab>magenest</tab>
+            <resource>Magenest_Movie::config</resource>
+            <group id="group_movie" translate="label" type="text"
+                   sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Movie Configuration</label>
+
+                <field id="text_field" translate="label"
+                       type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Text Field</label>
+                </field>
+
+                <field id="yesno_field" translate="label"
+                       type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Yes/No_Field_abcd</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="custom_field" translate="label"
+                       type="select" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Custom Select Field</label>
+                    <source_model>Magenest\Movie\Model\Config\Source\Relation</source_model>
+                </field>
+
+                <field id="text_field_movierows" translate="label"
+                       type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Rows in table “magenest_movie”</label>
+                    <frontend_model>Magenest\Movie\Block\Adminhtml\Form\Field\MovieRowsTextField</frontend_model>
+                </field>
+
+                <field id="text_field_actorrows" translate="label"
+                       type="text" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Rows in table “magenest_actor”</label>
+                    <frontend_model>Magenest\Movie\Block\Adminhtml\Form\Field\ActorRowsTextField</frontend_model>
+                    <depends>
+                        <field id="custom_field">1</field>
+                    </depends>
+                </field>
+
+                <field id="button_field" translate="label"
+                       type="button" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <frontend_model>Magenest\Movie\Block\System\Config\Form\Button</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

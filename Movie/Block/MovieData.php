@@ -47,7 +47,6 @@ class MovieData extends Template
             'main_table.director_id = d.director_id',
             'd.name as director_name'
         );
-        $a = 3;
         //->join(
         //            ['a' => $actorTableName],
         //            'ma.actor_id = a.actor_id',

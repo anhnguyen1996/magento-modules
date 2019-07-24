@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!--Actor Provider-->
+    <virtualType name="ActorsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magenest\Movie\Model\ResourceModel\Actor\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ContactsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="ContactsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="actor_listing_data_source" xsi:type="string">Magenest\Movie\Model\ResourceModel\Actor\Grid\Collection</item>
+                <item name="movies_listing_data_source" xsi:type="string">Magenest\Movie\Model\ResourceModel\Movie\Grid\Collection</item>
+                <item name="directors_listing_data_source" xsi:type="string">Magenest\Movie\Model\ResourceModel\Director\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Magenest\Movie\Model\ResourceModel\Actor\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_actor</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Movie\Model\ResourceModel\Actor</argument>
+        </arguments>
+    </virtualType>
+
+    <!--Movie Provider-->
+<!--    <virtualType name="MoviesGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magenest\Movie\Model\ResourceModel\Movie\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ContactsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magenest\Movie\Model\ResourceModel\Movie\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_movie</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Movie\Model\ResourceModel\Movie</argument>
+        </arguments>
+    </virtualType>-->
+
+    <!--Director Provider-->
+    <virtualType name="DirectorsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magenest\Movie\Model\ResourceModel\Director\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ContactsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magenest\Movie\Model\ResourceModel\Director\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_director</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Movie\Model\ResourceModel\Director</argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -64,4 +64,9 @@
             <argument name="resourceModel" xsi:type="string">Magenest\Movie\Model\ResourceModel\Director</argument>
         </arguments>
     </virtualType>
+
+    <!--Plugin Chapter 7-->
+    <type name="Magento\Checkout\CustomerData\AbstractItem">
+        <plugin name="Magenest_Movie::productCart" type="Magenest\Movie\Plugin\Catalog\CartAfter" sortOrder="1"/>
+    </type>
 </config>

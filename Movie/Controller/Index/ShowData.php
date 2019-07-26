@@ -2,10 +2,11 @@
 namespace Magenest\Movie\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\View\Result\PageFactory;
 
 class ShowData extends Action
 {
-
     public function execute()
     {
         $resource = $this->_objectManager->get('Magento\Framework\App\ResourceConnection');

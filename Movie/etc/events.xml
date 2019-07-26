@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_customer_prepare_save">
+        <observer
+                name="edit_name_before_save"
+                instance="Magenest\Movie\Observer\SaveCustomerObserver"
+        />
+    </event>
+    <event name="set_movie_raring_equal_zero">
+        <observer
+                name="set_rating_zero"
+                instance="Magenest\Movie\Observer\SaveMovieObserver"
+        />
+    </event>
+    <event name="admin_system_config_changed_section_section_movie">
+        <observer
+                name="custom_admin_system_config_changed_section_movie"
+                instance="Magenest\Movie\Observer\SaveConfiguration"
+        />
+    </event>
+</config>

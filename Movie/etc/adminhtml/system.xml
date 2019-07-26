@@ -20,6 +20,7 @@
                        type="text" sortOrder="10" showInDefault="1"
                        showInWebsite="1" showInStore="1">
                     <label>Text Field</label>
+                    <!--<backend_model>Magenest\Movie\Model\Config\Backend\TextField</backend_model>-->
                 </field>
 
                 <field id="yesno_field" translate="label"
@@ -41,6 +42,7 @@
                        showInWebsite="1" showInStore="1">
                     <label>Rows in table “magenest_movie”</label>
                     <frontend_model>Magenest\Movie\Block\Adminhtml\Form\Field\MovieRowsTextField</frontend_model>
+                    <!--<backend_model>Magenest\Movie\Model\Config\Backend\MovieRowsTextField</backend_model>-->
                 </field>
 
                 <field id="text_field_actorrows" translate="label"
@@ -48,6 +50,7 @@
                        showInWebsite="1" showInStore="1">
                     <label>Rows in table “magenest_actor”</label>
                     <frontend_model>Magenest\Movie\Block\Adminhtml\Form\Field\ActorRowsTextField</frontend_model>
+                    <!--<backend_model>Magenest\Movie\Model\Config\Backend\ActorRowsTextField</backend_model>-->
                     <depends>
                         <field id="custom_field">1</field>
                     </depends>

@@ -69,4 +69,13 @@
     <type name="Magento\Checkout\CustomerData\AbstractItem">
         <plugin name="Magenest_Movie::productCart" type="Magenest\Movie\Plugin\Catalog\CartAfter" sortOrder="1"/>
     </type>
+
+    <!--Backend Advance Chapter-->
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="odd_even" xsi:type="string">sales_order.odd_even</item>
+            </argument>
+        </arguments>
+    </virtualType>
 </config>

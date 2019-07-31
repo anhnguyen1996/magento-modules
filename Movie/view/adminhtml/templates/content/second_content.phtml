@@ -1,0 +1,29 @@
+<h2>Second Content</h2>
+<div class="col-m-4">
+    <table class="admin__table-secondary">
+        <tr>
+            <th><b><?php echo __('Entity') ?></b></th>
+            <th><b><?php echo __('Value') ?></b></th>
+        </tr>
+        <tr>
+            <td><?php echo __('Customers')?></td>
+            <td><?php echo $block->getCustomerQuantity()?></td>
+        </tr>
+        <tr>
+            <td><?php echo __('Products')?></td>
+            <td><?php echo $block->getProductQuantity()?></td>
+        </tr>
+        <tr>
+            <td><?php echo __('Orders')?></td>
+            <td><?php echo $block->getOrderQuantity()?></td>
+        </tr>
+        <tr>
+            <td><?php echo __('Invoices')?></td>
+            <td><?php echo $block->getInvoiceQuantity()?></td>
+        </tr>
+        <tr>
+            <td><?php echo __('Creditmemos')?></td>
+            <td><?php echo $block->getCreditMemoQuantity()?></td>
+        </tr>
+    </table>
+</div>

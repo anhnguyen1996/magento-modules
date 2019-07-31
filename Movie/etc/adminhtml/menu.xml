@@ -39,5 +39,42 @@
              action="movie/index/actor"
              sortOrder="30"
         />
+        <!--Integration-->
+        <add id="Magenest_Movie::dashboard_integration"
+             title="Integration"
+             module="Magenest_Movie"
+             resource="Magenest_Movie::dashboard_integration"
+             sortOrder="21"
+        />
+        <add id="Magenest_Movie::integration_section_1"
+             title="Section 1"
+             module="Magenest_Movie"
+             resource="Magenest_Movie::integration_section_1"
+             parent="Magenest_Movie::dashboard_integration"
+             sortOrder="10"
+         />
+        <add id="Magenest_Movie::integration_section_2"
+             title="Section 1"
+             module="Magenest_Movie"
+             resource="Magenest_Movie::integration_section_2"
+             parent="Magenest_Movie::dashboard_integration"
+             sortOrder="20"
+        />
+        <add id="Magenest_Movie::first_content_container"
+             title="1st content container"
+             module="Magenest_Movie"
+             resource="Magenest_Movie::first_content_container"
+             parent="Magenest_Movie::integration_section_1"
+             action="movie/content/firstcontentcontainer"
+             sortOrder="10"
+        />
+        <add id="Magenest_Movie::second_content_container"
+             title="2nd content container"
+             module="Magenest_Movie"
+             resource="Magenest_Movie::second_content_container"
+             parent="Magenest_Movie::integration_section_2"
+             action="movie/content/secondcontentcontainer"
+             sortOrder="10"
+        />
     </menu>
 </config>

@@ -1,0 +1,21 @@
+<p>Total module install(Not in magento vendor): <?php echo $block->getModuleQuantityInstalled();?></p>
+<div class="col-m-4">
+    <table class="admin__table-secondary">
+        <tr>
+            <th><b>Id<b></th>
+            <th><b>Module Name<b></th>
+        </tr>
+        <?php $setupModuleId = 1?>
+        <?php foreach ($block->getModuleNameInstalled() as $setupModuleElement):?>
+            <tr>
+                <td><?php echo $setupModuleId?></td>
+                <td>
+                    <?php echo $setupModuleElement->getData('module');?>
+                </td>
+            </tr>
+        <?php
+            $setupModuleId++;
+            endforeach;
+        ?>
+    </table>
+</div>

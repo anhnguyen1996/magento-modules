@@ -6,21 +6,25 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Customer\Model\Customer;
+use Magento\Sales\Setup\SalesSetupFactory;
+use Magento\Sales\Model\Order;
 use Magento\Eav\Model\Entity\Attribute\Set as AttributeSet;
 use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
-
-class UpgradeData implements UpgradeDataInterface {
-
+class UpgradeData implements UpgradeDataInterface
+{
     protected $customerSetupFactory;
     private $attributeSetFactory;
+    protected $salesSetupFactory;
 
     public function __construct(
         CustomerSetupFactory $customerSetupFactory,
+        SalesSetupFactory $salesSetupFactory,
         AttributeSetFactory $attributeSetFactory)
     {
         $this->customerSetupFactory = $customerSetupFactory;
         $this->attributeSetFactory = $attributeSetFactory;
+        $this->salesSetupFactory = $salesSetupFactory;
     }
 
 
@@ -63,6 +67,33 @@ class UpgradeData implements UpgradeDataInterface {
 
             $image->save();
             $setup->endSetup();
+        }
+
+        if (version_compare($context->getVersion(), '2.0.5') < 0) {
+            $installer = $setup;
+
+            $installer->startSetup();
+
+            $salesSetup = $this->salesSetupFactory->create(['resourceName' => 'sales_setup', 'setup' => $installer]);
+
+            $salesSetup->addAttribute(Order::ENTITY, 'odd_even', [
+                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                'length'=> 255,
+                'visible' => false,
+                'nullable' => true
+            ]);
+
+            $installer->getConnection()->addColumn(
+                $installer->getTable('sales_order_grid'),
+                'odd_even',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length' => 255,
+                    'comment' =>'Odd or Even Id'
+                ]
+            );
+
+            $installer->endSetup();
         }
     }
 }

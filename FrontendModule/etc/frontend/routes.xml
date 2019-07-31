@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation= "urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="frontendmodule" frontName="frontendmodule">
+            <module name="Magenest_FrontendModule"/>
+        </route>
+    </router>
+</config>

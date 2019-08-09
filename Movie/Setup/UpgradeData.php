@@ -69,30 +69,23 @@ class UpgradeData implements UpgradeDataInterface
             $setup->endSetup();
         }
 
-        if (version_compare($context->getVersion(), '2.0.5') < 0) {
+        if (version_compare($context->getVersion(), '2.0.9') < 0) {
             $installer = $setup;
 
             $installer->startSetup();
 
+            /** @var \Magento\Sales\Setup\SalesSetup $salesSetup */
             $salesSetup = $this->salesSetupFactory->create(['resourceName' => 'sales_setup', 'setup' => $installer]);
 
-            $salesSetup->addAttribute(Order::ENTITY, 'odd_even', [
-                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                'length'=> 255,
-                'visible' => false,
-                'nullable' => true
-            ]);
-
-            $installer->getConnection()->addColumn(
-                $installer->getTable('sales_order_grid'),
-                'odd_even',
+            $salesSetup->addAttribute(Order::ENTITY, 'odd_even',
                 [
                     'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                    'length' => 255,
-                    'comment' =>'Odd or Even Id'
+                    'length'=> 255,
+                    'visible' => false,
+                    'nullable' => true,
+                    'grid' => true
                 ]
             );
-
             $installer->endSetup();
         }
     }

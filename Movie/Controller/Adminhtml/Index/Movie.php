@@ -19,8 +19,9 @@ class Movie extends Action
 
     public function execute()
     {
-
         $result = $this->resultPageFactory->create();
+        $result->setActiveMenu('Magenest_Movie::movie');
+        $result->getConfig()->getTitle()->prepend(__('Magenest Movie'));
         return $result;
     }
 

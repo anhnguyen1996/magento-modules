@@ -19,47 +19,11 @@
         </item>
     </argument>
 
-    <listingToolbar name="listing_top">
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="sticky" xsi:type="boolean">true</item>
-            </item>
-        </argument>
-        <bookmark name="bookmarks"/>
-        <columnsControls name="columns_controls"/>
-        <filterSearch name="fulltext"/>
-        <filters name="listing_filters" />
-        <!--         <massaction name="listing_massaction">
-                    <argument name="data" xsi:type="array">
-                        <item name="config" xsi:type="array">
-                            <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
-                            <item name="selectProvider" xsi:type="string">actor_listing.actor_listing.contacts_test_columns.ids</item>
-                            <item name="indexField" xsi:type="string">id</item>
-                        </item>
-                    </argument>
-                    <action name="delete">
-                        <argument name="data" xsi:type="array">
-                            <item name="config" xsi:type="array">
-                                <item name="type" xsi:type="string">delete</item>
-                                <item name="label" xsi:type="string" translate="true">Delete</item>
-                                <item name="url" xsi:type="url" path="module3/index/massdelete"/>
-                                <item name="confirm" xsi:type="array">
-                                    <item name="title" xsi:type="string" translate="true">Delete Post</item>
-                                    <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
-                                </item>
-                            </item>
-                        </argument>
-                    </action>
-                </massaction> -->
-        <paging name="listing_paging"/>
-        <exportButton name="export_button"/>
-    </listingToolbar>
-
     <!-- dataProvider, with a class tag to define the name of the object to be used. -->
     <dataSource name="movies_contact_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <!--<argument name="class" xsi:type="string">MoviesGridDataProvider</argument>-->
-            <argument name="class" xsi:type="string">Magenest\Movie\Model\Movie\Listing\DataProvider</argument>
+            <argument name="class" xsi:type="string">MoviesGridDataProvider</argument>
+            <!--<argument name="class" xsi:type="string">Magenest\Movie\Model\Movie\Listing\DataProvider</argument>-->
             <argument name="name" xsi:type="string">movies_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">movie_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
@@ -75,28 +39,117 @@
         </argument>
     </dataSource>
 
-    <!-- define the columns of grid: name from spinner -->
-    <columns name="movies_columns">
+    <listingToolbar name="listing_top">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-                <!-- bookmark behavior -->
-                <item name="storageConfig" xsi:type="array">
-                    <item name="provider" xsi:type="string">movies_listing.movies_listing.listing_top.bookmarks</item>
-                    <item name="namespace" xsi:type="string">current</item>
-                </item>
-                <item name="childDefaults" xsi:type="array">
-                    <item name="controlVisibility" xsi:type="boolean">true</item>
+                <item name="sticky" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/search/search</item>
+                    <item name="displayArea" xsi:type="string">dataGridFilters</item>
+                    <item name="provider" xsi:type="string">movies_listing.movies_listing_data_source</item>
+                    <item name="chipsProvider" xsi:type="string">movies_listing.movies_listing.listing_top.listing_filters_chips</item>
                     <item name="storageConfig" xsi:type="array">
                         <item name="provider" xsi:type="string">movies_listing.movies_listing.listing_top.bookmarks</item>
-                        <item name="root" xsi:type="string">columns.${ $.index }</item>
-                        <!-- ${ $.index } means the current column index -->
-                        <!-- ${ $.storageConfig.root }: It is referring to root property of current storageConfig
-                            that you previously defined as ${ $.index }.so, at the end it should take the same value as ${ $.index} -->
-                        <item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
+                        <item name="namespace" xsi:type="string">current.search</item>
+                    </item>
+                </item>
+            </argument>
+        </filterSearch>
+        <filters name="listing_filters" />
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+                    <item name="selectProvider" xsi:type="string">movies_listing.movies_listing.movies_columns.ids</item>
+                    <item name="indexField" xsi:type="string">movie_id</item>
+                </item>
+            </argument>
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <item name="url" xsi:type="url" path="movie/index_movie/massdelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Delete Post</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="edit">
+                <settings>
+                    <callback>
+                        <target>editSelected</target>
+                        <provider>movies_listing.movies_listing.movies_columns_editor</provider>
+                    </callback>
+                    <type>edit</type>
+                    <label translate="true">Edit</label>
+                </settings>
+            </action>
+            <action name="change_status">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">change_status</item>
+                        <item name="label" xsi:type="string" translate="true">Change status</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="configurableObject">
+                    <argument name="class" xsi:type="string">Magenest\Movie\Ui\Component\MassAction\Status\Options</argument>
+                    <argument name="data" xsi:type="array">
+                        <item name="urlPath" xsi:type="string">movie/index_movie/massStatus</item>
+                        <item name="paramName" xsi:type="string">status</item>
+                    </argument>
+                </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+        <exportButton name="export_button"/>
+    </listingToolbar>
+
+    <!-- define the columns of grid: name from spinner -->
+    <columns name="movies_columns">
+
+        <!--Record config-->
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="templates" xsi:type="array">
+                    <item name="record" xsi:type="array">
+                        <item name="component" xsi:type="string">Magenest_Movie/js/grid/editing/record</item>
                     </item>
                 </item>
             </item>
         </argument>
+        <!--End Record config-->
+
+        <settings>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="movie/index_movie/inlineEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+                <param name="indexField" xsi:type="string">movie_id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">movies_listing.movies_listing.movies_columns.ids</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">movies_listing.movies_listing.movies_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -130,6 +183,10 @@
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
+                    <!--edit inline editor type-->
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
                 </item>
             </argument>
         </column>
@@ -148,12 +205,17 @@
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
+                    <!--edit inline editor type-->
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
                 </item>
             </argument>
         </column>
 
+        <!--class="Magenest\Movie\Ui\Component\Listing\Column\NewRating"-->
         <!-- Column rating -->
-        <column name="rating" class="Magenest\Movie\Model\Config\Backend\Movie\Column\NewRating">
+        <column name="rating">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="visible" xsi:type="boolean">true</item>
@@ -162,61 +224,101 @@
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">movie</item>
                     <item name="dataScope" xsi:type="string">rating</item>
-                    <!--<item name="filter" xsi:type="string">text</item-->
+                    <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Rating</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
-                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <!--<item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>-->
+                    <item name="bodyTmpl" xsi:type="string">Magenest_Movie/movie/list/columns/rating</item>
+                    <!--edit inline editor type-->
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                    </item>
+                   <!-- <item name="editorConfig" xsi:type="array">
+                        <item name="templates" xsi:type="array">
+                            <item name="record" xsi:type="array">
+                                <item name="component" xsi:type="string">Magenest_Movie/js/grid/editing/record</item>
+                            </item>
+                        </item>
+                    </item>-->
                 </item>
             </argument>
         </column>
 
-
-<!--        <column name="director_id">
+        <!-- Column Director Name-->
+        <column name="director_id">
             <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magenest\Movie\Model\System\Director</item>
                 <item name="config" xsi:type="array">
-                    <item name="visible" xsi:type="boolean">false</item>
-                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="label" xsi:type="string" translate="true">Director Name</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="visible" xsi:type="boolean">true</item>
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">movie</item>
                     <item name="dataScope" xsi:type="string">director_id</item>
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Director Id</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">select</item>
                     </item>
+                    <item name="filter" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </column>
+
+        <column name="status">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magenest\Movie\Model\System\Status</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">movie</item>
+                    <item name="dataScope" xsi:type="string">status</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="editor" xsi:type="string">select</item>
+                    <item name="filter" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </column>
+
+        <!--<column name="tag_color">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magenest\Movie\Model\Source\Adminhtml\Tag</item>
+                <item name="config" xsi:type="array">
+                    &lt;!&ndash;Record config&ndash;&gt;
+                    &lt;!&ndash;<item name="component" xsi:type="string">Magenest_Movie/js/form/element/tag</item>&ndash;&gt;
+                    <item name="editor" xsi:type="string">select</item>
+                    &lt;!&ndash;<item name="bodyTmpl" xsi:type="string">Magenest_Movie/form/element/tag</item>&ndash;&gt;
+                    &lt;!&ndash;<item name="bodyTmpl" xsi:ty    pe="string">ui/grid/cells/html</item>&ndash;&gt;
+                    &lt;!&ndash;<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>&ndash;&gt;
+                    &lt;!&ndash;<item name="bodyTmpl" xsi:type="string">Magenest_Movie/form/element/tag</item>&ndash;&gt;
+                    &lt;!&ndash;<item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>&ndash;&gt;
+                    &lt;!&ndash;End Record config&ndash;&gt;
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    &lt;!&ndash;<item name="source" xsi:type="string">movie</item>&ndash;&gt;
+                    &lt;!&ndash;<item name="dataScope" xsi:type="string">director_name</item>&ndash;&gt;
+                    <item name="filter" xsi:type="string">false</item>
+                    <item name="label" xsi:type="string" translate="true">Tag Color</item>
+                    &lt;!&ndash;<item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">select</item>
+                    </item>&ndash;&gt;
                 </item>
             </argument>
         </column>-->
 
-        <!-- Column Director Name-->
-        <column name="director_name">
+         <!--action columns edit and delete-->
+        <actionsColumn name="actions" class="Magenest\Movie\Ui\Component\Listing\Column\MoviesAction">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">movie</item>
-                    <item name="dataScope" xsi:type="string">director_name</item>
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Director Name</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">107</item>
+                    <item name="indexField" xsi:type="string">pfay_contacts_id</item>
                 </item>
             </argument>
-        </column>
-
-        <!-- action columns edit and delete -->
-        <!--        <actionsColumn name="actions" class="Jeff\Contacts\Ui\Component\Listing\Column\ContactsActions">
-                    <argument name="data" xsi:type="array">
-                        <item name="config" xsi:type="array">
-                            <item name="resizeEnabled" xsi:type="boolean">false</item>
-                            <item name="resizeDefaultWidth" xsi:type="string">107</item>
-                            <item name="indexField" xsi:type="string">pfay_contacts_id</item>
-                        </item>
-                    </argument>
-                </actionsColumn>-->
+        </actionsColumn>
     </columns>
 </listing>

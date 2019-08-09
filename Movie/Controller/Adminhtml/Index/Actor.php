@@ -21,6 +21,8 @@ class Actor extends Action
     {
 
         $result = $this->resultPageFactory->create();
+        $result->setActiveMenu('Magenest_Movie::actor');
+        $result->getConfig()->getTitle()->prepend(__('Magenest actor'));
         return $result;
     }
 

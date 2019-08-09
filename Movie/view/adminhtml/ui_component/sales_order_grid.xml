@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-    <columns name="sales_order_columns" class="Magenest\Movie\Model\Config\Backend\Sales\Order\Column\EvenOdd">
+    <columns name="sales_order_columns" class="Magenest\Movie\Ui\Component\Listing\Column\EvenOdd">
         <column name="odd_even">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

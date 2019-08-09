@@ -39,7 +39,6 @@ class Product extends \Magento\Framework\App\Action\Action
     {
         if ($id = $this->getRequest()->getParam('id')) {
             $product = $this->productFactory->create()->load($id);
-
             $productData = [
                 'entity_id' => $product->getId(),
                 'name' => $product->getName(),

@@ -92,7 +92,7 @@
             </argument>
         </field>
 
-        <field name="rating">
+        <!--<field name="rating">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string">Rating</item>
@@ -106,7 +106,24 @@
                     </item>
                 </item>
             </argument>
-        </field>
+        </field>-->
+
+        <fieldset name="rating">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Rating</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">movie</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="dataScope" xsi:type="string">rating</item>
+                </item>
+            </argument>
+            <htmlContent name="movie_edit_rating">
+                <block class="Magenest\Movie\Block\Adminhtml\Movie\Form\DetailRating" name="customer_edit_tab_view" template="Magenest_Movie::rating/detailed.phtml"/>
+            </htmlContent>
+        </fieldset>
 
         <field name="director_id" formElement="select">
             <argument name="data" xsi:type="array">
@@ -130,5 +147,23 @@
             </formElements>
         </field>
 
+        <field name="actor_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magenest\Movie\Model\System\Actor</item>
+                <item name="config" xsi:type="array">
+                    <item name="label"  xsi:type="string">Actor</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">movie</item>
+                    <!--<item name="default" xsi:type="string">1,2,3</item>-->
+                </item>
+            </argument>
+            <settings>
+                <imports>
+                    <link name="value">${ $.provider }:data.movie.actor_id</link>
+                </imports>
+            </settings>
+        </field>
     </fieldset>
 </form>

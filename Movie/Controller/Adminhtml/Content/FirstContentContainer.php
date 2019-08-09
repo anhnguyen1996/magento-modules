@@ -11,8 +11,8 @@ class FirstContentContainer extends Action
 
     public function __construct(
         Context $context,
-        PageFactory $resultPageFactory)
-    {
+        PageFactory $resultPageFactory
+    ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
@@ -21,6 +21,7 @@ class FirstContentContainer extends Action
     {
         $result = $this->resultPageFactory->create();
         $result->getConfig()->getTitle()->prepend(__('First Contain Container'));
+        $result->setActiveMenu('Magenest_Movie::first_content_container');
         return $result;
     }
 }

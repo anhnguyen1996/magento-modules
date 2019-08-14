@@ -82,4 +82,5 @@
     </virtualType>
 
     <preference for="Magento\Catalog\Block\Product\ListProduct" type="Magenest\Movie\Block\Product\ListProduct" />
+    <preference for="Magento\Framework\Pricing\Render\Amount" type="Magenest\Movie\Block\Pricing\Render\Amount" />
 </config>

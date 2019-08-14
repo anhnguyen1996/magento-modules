@@ -1,0 +1,34 @@
+<div class="admin__field field field-detailed-rating  required _required"
+     data-ui-id="adminhtml-edit-0-form-fieldset-element-form-field-detailed-rating">
+    <label class="label admin__field-label" for="detailed-rating"
+               data-ui-id="adminhtml-edit-0-form-fieldset-element-note-label"><span>Detailed Rating</span></label>
+    <div class="admin__field-control control">
+        <div id="detailed-rating" class="control-value admin__field-value">
+            <div id="rating_detail">
+                <div class="admin__field admin__field-rating">
+                    <label class="admin__field-label">
+                        <span>rating</span>
+                    </label>
+                    <div class="admin__field-control" data-widget="ratingControl">
+                        <!--<repeat args="foreach: 5, item: '$r'">
+                            <input type="radio" name="rating" id="'rating_'+$r" value="$r*2"
+                                   data-form-part="movie_form">
+                            <label for="'rating_'+$r">★</label>
+                        </repeat>-->
+                        <input type="radio" name="rating" id="rating_5" value="10" data-form-part="movie_form">
+                        <label for="rating_5">★</label>
+                        <input type="radio" name="rating" id="rating_4" value="8" data-form-part="movie_form">
+                        <label for="rating_4">★</label>
+                        <input type="radio" name="rating" id="rating_3" value="6" data-form-part="movie_form">
+                        <label for="rating_3">★</label>
+                        <input type="radio" name="rating" id="rating_2" value="4" data-form-part="movie_form">
+                        <label for="rating_2">★</label>
+                        <input type="radio" name="rating" id="rating_1" value="2" data-form-part="movie_form">
+                        <label for="rating_1">★</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="validate_rating" class="validate-rating" value=""/>
+</div>

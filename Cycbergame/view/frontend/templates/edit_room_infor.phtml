@@ -1,0 +1,19 @@
+<div data-mage-init='{"editroom": {}}'>
+    <h2>Edit Room Id<?php echo $block->getId()?></h2>
+    <p id="notice"></p>
+    <input id="hidden_room_id" type="hidden" value="<?php echo $block->getId();?>">
+    Name:
+    <input id="name-text" type="text" value="<?php echo $block->getName();?>" disabled/><br/>
+    Price:
+    <input id="price-text" type="text" value="10000" disabled/><br/>
+    Number Pc:
+    <input id="number-pc-text" type="text" value="<?php echo $block->getNumberPc();?>"/><br/>
+    Address:
+    <input id="address-text" type="text" value="<?php echo $block->getAddress();?>"/><br/>
+    Name:
+    <input id="food-price-text" type="text" value="<?php echo $block->getFoodPrice();?>"/><br/>
+    Name:
+    <input id="drink-price-text" type="text" value="<?php echo $block->getDrinkPrice();?>"/><br/>
+    <button type="button" id="btn">Submit</button>
+    <p id="notice"></p>
+</div>

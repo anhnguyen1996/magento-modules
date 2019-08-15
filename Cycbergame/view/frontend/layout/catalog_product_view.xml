@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main" >
+            <container name="room.info.container" label="Room info container" after="product.info.price" >
+                <block class="Magenest\Cycbergame\Block\Product\View" name="product.info.room" template="Magenest_Cycbergame::product/view/room_info.phtml" cacheable="false" />
+            </container>
+        </referenceContainer>
+        <referenceContainer name="product.info.form.content">
+            <block class="Magenest\Cycbergame\Block\Product\View" name="product.info.addtocart" as="addtocart" template="Magenest_Cycbergame::product/view/addtocart.phtml">
+                <!--<arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="display" xsi:type="array">
+                                <item name="component" xsi:type="string">Magenest_Cycbergame/js/view/confirm_account</item>
+                                <item name="displayArea" xsi:type="string">display</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>-->
+            </block>
+        </referenceContainer>
+    </body>
+</page>

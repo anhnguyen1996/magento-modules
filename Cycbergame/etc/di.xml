@@ -32,4 +32,5 @@
     </virtualType>
 
     <preference for="Magento\Customer\Block\Form\Edit" type="Magenest\Cycbergame\Block\Customer\Form\Edit" />
+    <preference for="Magento\Catalog\Block\Product\View" type="Magenest\Cycbergame\Block\Product\View" />
 </config>

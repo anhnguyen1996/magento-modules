@@ -1,0 +1,28 @@
+<span>Number Pc: <?php echo $block->getNumberPc();?></span><br>
+<span>Address: <?php echo $block->getAddress();?></span><br>
+<span>Food Price: <?php echo $block->getFoodPrice();?></span><br>
+<span>Drink Price: <?php echo $block->getDrinkPrice();?></span><br>
+<b>Account Name</b><br/>
+<!--<input type="text" id="account_name" name="account_name"/>-->
+<!--<p id="notice"></p>-->
+<script>
+   /* require([
+            "jquery"
+        ], function($){
+            "use strict";
+            $(document).ready(function() {
+                $('#account_name').change(function(e) {
+                    alert("ajax");
+                    $.ajax({
+                        type: "POST",
+                        url: "http://magento2.local/cycbergame/gamer/checkgamer",
+                        data: {account_name: $('#account_name').val()},
+                        success: function (data) {
+                            $('#notice').html(data);
+                        }
+                    });
+                });
+            });
+        }
+    );*/
+</script>

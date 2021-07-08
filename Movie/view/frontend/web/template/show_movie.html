@@ -1,0 +1,30 @@
+<!--
+<h2>Change Customer Information</h2>
+<input data-bind="value: email" type="text"/>
+<input data-bind="value: phone" type="text"/>
+<button data-bind="click: changeInfor">Change Infor</button>
+<br/>
+<h2>Search Movie</h2>
+<input id="movie_id" type="hidden" value="">
+<input data-bind="value: searchMovieName, event: {change: getMovie}" id="text_search"  name="text_search" type="text"/>
+<button data-bind="click: getMovie">Search Movie</button>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Movie Name</th>
+            <th>Description</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: movieList">
+        <tr>
+            <td data-bind="text: movie_id"></td>
+            <td>
+                &lt;!&ndash; ko text: name&ndash;&gt;&lt;!&ndash;/ko&ndash;&gt;
+            </td>
+            <td data-bind="text: description"></td>
+            <td data-bind="text: rating"></td>
+        </tr>
+    </tbody>
+</table>-->

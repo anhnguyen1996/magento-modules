@@ -1,0 +1,26 @@
+<div class="col-m-4">
+    <table class="admin__table-secondary">
+        <tr>
+            <th>Product ID</th>
+            <th>Room Name</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach ($block->getRoom() as $roomDataElement):?>
+            <tr>
+                <td>
+                    <?php echo $roomDataElement->getData('product_id');?>
+                </td>
+                <td>
+                    <?php echo $roomDataElement->getData('name');?>
+                </td>
+                <td>
+                    <?php echo ($roomDataElement->getData('food_price') + $roomDataElement->getData('drink_price'));?>
+                </td>
+                <td>
+                    <a href="http://magento2.local/cycbergame/room/edit?id=<?php echo $roomDataElement->getData('id')?>" <?php if($block->isManager()) {echo "disabled";}?> >Edit</a>
+                </td>
+            </tr>
+        <?php endforeach;?>
+    </table>
+</div>

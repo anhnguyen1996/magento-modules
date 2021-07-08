@@ -1,0 +1,37 @@
+<div class="admin__field field field-detailed-rating  required _required"
+     data-ui-id="adminhtml-edit-0-form-fieldset-element-form-field-detailed-rating">
+    <label class="label admin__field-label" for="detailed-rating"
+           data-ui-id="adminhtml-edit-0-form-fieldset-element-note-label"><span>Detailed Rating</span></label>
+    <div class="admin__field-control control">
+        <div id="detailed-rating" class="control-value admin__field-value">
+            <div id="rating_detail">
+                <div class="admin__field admin__field-rating">
+                    <label class="admin__field-label">
+                        <span>rating</span>
+                    </label>
+                    <?php $rating = $block->getRating(); ?>
+                    <div class="admin__field-control" data-widget="ratingControl">
+                        <?php for ($i = 5; $i > 0; $i--): ?>
+                            <input type="radio" id="<?php echo 'rating_' . $i; ?>" name="rating"
+                                   value="<?php echo $i * 2; ?>" <?php if ((int)($rating / 2) == $i) echo 'checked' ?>
+                                   data-form-part="movie_form"
+                            />
+                            <label for="<?php echo 'rating_' . $i; ?>">&#9733;</label>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="validate_rating" class="validate-rating" value=""/>
+</div>
+<script>
+    require([
+        "jquery",
+        "mage/mage",
+        "Magento_Review/js/rating"
+    ], function ($) {
+        "use strict";
+        $('[data-widget=ratingControl]').ratingControl();
+    });
+</script>

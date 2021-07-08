@@ -7,20 +7,30 @@ use Magenest\Movie\Model\ResourceModel\SetupModule\Collection as SetupModuleColl
 class FirstContentBlock extends Template
 {
     private $_setupModuleCollection;
+    protected $fullModuleList;
 
     public function __construct(
         Template\Context $context,
         SetupModuleCollection $setupModuleCollection,
+        \Magento\Framework\Module\FullModuleList $fullModuleList,
         array $data = [])
     {
         $this->_setupModuleCollection = $setupModuleCollection;
+        $this->fullModuleList = $fullModuleList;
         parent::__construct($context, $data);
     }
 
     public function getModuleQuantityInstalled()
     {
-        $setupModuleCollection = $this->_setupModuleCollection;
-        $count = $setupModuleCollection->addFieldToFilter('module', ['nlike' => 'Magento%'])->getSize();
+        $allModules = $this->fullModuleList->getAll();
+        /*$setupModuleCollection = $this->_setupModuleCollection;
+        $count = $setupModuleCollection->addFieldToFilter('module', ['nlike' => 'Magento%'])->getSize();*/
+        $count = 0;
+        foreach ($allModules as $key => $value) {
+            if(strpos($key, 'Magento') === false) {
+                $count++;
+            }
+        }
         return $count;
     }
 
@@ -29,5 +39,4 @@ class FirstContentBlock extends Template
         $setupModuleCollection = $this->_setupModuleCollection->addFieldToSelect('module');
         return $setupModuleCollection;
     }
-
 }

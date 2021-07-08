@@ -23,6 +23,7 @@ class Image extends Template
     {
         //1.Get Customer Id
         $customerSession = $this->_customerSession;
+
         $customerId = $customerSession->getCustomer()->getData('entity_id');
         //2.Get Image Path
             //2.1 Get media Path

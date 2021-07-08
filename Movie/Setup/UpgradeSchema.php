@@ -12,20 +12,30 @@ class UpgradeSchema implements UpgradeSchemaInterface
     public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $setup->startSetup();
-        //First create primarily Director Table
-       /* if (version_compare($context->getVersion(), '2.0.1') < 0) {
+        //First create primarily Actor,Director Table
+        //After create Movie Table
+        //Finally create Movie Actor Table
+        if (version_compare($context->getVersion(), '2.0.1') < 0) {
             $connection = $setup->getConnection();
             $magenestMovieTable = $this->createMagenestMovieTable($setup, $connection);
             $connection->createTable($magenestMovieTable);
-        }*/
-
-        //After create Movie Table
-        if (version_compare($context->getVersion(), '2.0.2') < 0) {
-            $connection = $setup->getConnection();
-            $magenestMovieActorTable = $this->createMagenestMovieActorTable($setup, $connection);
-            $connection->createTable($magenestMovieActorTable);
         }
-        $setup->endSetup();
+
+        if (version_compare($context->getVersion(), '2.1.2') < 0) {
+            $table = $setup->getTable('magenest_movie');
+            $setup->getConnection()
+                ->addIndex(
+                    $table,
+                    $setup->getIdxName(
+                        $table,
+                        ['name'],
+                        \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+                    ),
+                    ['name'],
+                    \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+                )
+            ;
+        }
     }
 
     /**
@@ -87,6 +97,11 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $setup->getTable('magenest_director'),
             'director_id',
             \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+        )->addIndex(
+                $setup->getIdxName(
+                    'magenest_movie', ['name']
+                ),
+                ['name']
         );
         return $table;
     }

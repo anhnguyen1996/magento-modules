@@ -3,7 +3,7 @@ namespace Magenest\Movie\Plugin\Catalog;
 
 class CartAfter
 {
-    public function aroundGetItemData($subject, $proceed, $item)
+    public function aroundGetItemData(\Magento\Checkout\CustomerData\AbstractItem $subject, \Closure $proceed, \Magento\Quote\Model\Quote\Item $item)
     {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $result = $proceed($item);

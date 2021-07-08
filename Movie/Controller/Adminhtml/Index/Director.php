@@ -19,7 +19,8 @@ class Director extends Action
 
     public function execute()
     {
-
+        $result->setActiveMenu('Magenest_Movie::director');
+        $result->getConfig()->getTitle()->prepend(__('Magenest Director'));
         $result = $this->resultPageFactory->create();
         return $result;
     }

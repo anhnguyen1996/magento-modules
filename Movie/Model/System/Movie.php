@@ -3,7 +3,7 @@ namespace Magenest\Movie\Model\System;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
-class Movie extends \Magento\Framework\DataObject implements OptionSourceInterface
+class Movie implements OptionSourceInterface
 {
 
     public function getDirectorValuesForForm($empty = false)
